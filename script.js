@@ -81,7 +81,7 @@ function spawnEnemies() {
       y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius 
     }
 
-    const colour = '#ff3333'
+    const colour = '#25a7a7'
     const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x)
     const velocity = {
       x: Math.cos(angle),
