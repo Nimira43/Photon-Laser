@@ -97,8 +97,20 @@ function animate() {
   animatedId = requestAnimationFrame(animate)
   c.clearRect(0, 0, canvas.width, canvas.height)
   player.draw()
-  projectiles.forEach((projectile) => {
+  projectiles.forEach((projectile, index) => {
     projectile.update()
+  
+    if (
+      projectile.x - projectile.radius < 0 ||
+      projectile.x - projectile.radius > canvas.width ||
+      projectile.y + projectile.radius < 0 ||
+      projectile.y - projectile.radius > canvas.height
+    ) {
+      setTimeout(() => {
+        projectile.splice(index, 1)
+      }, 0)
+    }
+
   })
   enemies.forEach((enemy, index) => {
     enemy.update()
