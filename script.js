@@ -130,43 +130,47 @@ function animate() {
   animatedId = requestAnimationFrame(animate)
   c.fillStyle = 'rgba(0, 0, 0, 0.1'
   c.fillRect(0, 0, canvas.width, canvas.height)
+  
   player.draw()
 
-  particles.forEach((particle, index) => {
+  for (let index = particles.length - 1; index >= 0; index--) {
+    const particle = particles[index]
     if (particle.alpha <= 0) {
       particles.splice(index, 1)
     } else {
       particle.update()
     }  
-  })
-
-  projectiles.forEach((projectile, index) => {
-    projectile.update()
+  }
   
+  for (let index = projectiles.length - 1; index >= 0; index--) {
+    const projectile = projectiles[index]
+    projectile.update()
     if (
       projectile.x - projectile.radius < 0 ||
       projectile.x - projectile.radius > canvas.width ||
       projectile.y + projectile.radius < 0 ||
       projectile.y - projectile.radius > canvas.height
     ) {
-      setTimeout(() => {
-        projectile.splice(index, 1)
-      }, 0)
+      projectiles.splice(index, 1)
     }
+  }
 
-  })
-  enemies.forEach((enemy, index) => {
+  for (let index = enemies.length - 1; index >= 0; index--) {
+    const enemy = enemies[index]
     enemy.update()
-
     const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y)
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animatedId)
     }
 
-    projectiles.forEach((projectile, projectilesIndex) => {
+    for (
+      let projectilesIndex = projectiles.length - 1; 
+      projectilesIndex >= 0; 
+      projectilesIndex--      
+    ) {
+      const projectile = projectiles[projectilesIndex]
       const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y)
       if (dist - enemy.radius - projectile.radius < 1) {
-
         for (let i = 0; i < enemy.radius * 2; i++) {
           particles.push(
             new Particle(
@@ -181,27 +185,22 @@ function animate() {
             )
           )
         }
-
         if (enemy.radius - 10 > 5) {
           score += 10
           scoreEl.innerHTML = score
           gsap.to(enemy, {
             radius: enemy.radius - 10
           })
-          setTimeout(() => {
-            projectiles.splice(projectilesIndex, 1)
-          }, 0)
+          projectiles.splice(projectilesIndex, 1)
         } else {
           score += 10
           scoreEl.innerHTML = score
-          setTimeout(() => {
-            enemies.splice(index, 1)
-            projectiles.splice(projectilesIndex, 1)
-          }, 0)
+          enemies.splice(index, 1)
+          projectiles.splice(projectilesIndex, 1)
         }
       }
-    })
-  })
+    }
+  }
 }
 
 addEventListener('click', (event) => {
