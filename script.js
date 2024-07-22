@@ -3,6 +3,7 @@ const c = canvas.getContext('2d')
 const scoreEl = document.querySelector('#score-el')
 const modalEl = document.querySelector('#modal-el')
 const modalScoreEl = document.querySelector('#modal-score-el')
+const buttonEl = document.querySelector('#button-el')
 
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -96,13 +97,26 @@ class Particle {
 
 const x = canvas.width / 2
 const y = canvas.height / 2
-const player = new Player(x, y, 10, '#ff4500')
-const projectiles = []
-const enemies = []
-const particles = []
+
+let player = new Player(x, y, 10, '#ff4500')
+let projectiles = []
+let enemies = []
+let particles = []
+let animationId
+let intervalId
+let score = 0
+
+function init() {
+  player = new Player(x, y, 10, '#ff4500')
+  projectiles = []
+  enemies = []
+  particles = []
+  animationId
+  score = 0
+}
 
 function spawnEnemies() {
-  setInterval(() => {
+  intervalId = setInterval(() => {
     const radius = Math.random() * (30 - 4) + 4
     let x
     let y
@@ -125,11 +139,8 @@ function spawnEnemies() {
   }, 1000)
 }
 
-let animatedId
-let score = 0
-
 function animate() {
-  animatedId = requestAnimationFrame(animate)
+  animationId = requestAnimationFrame(animate)
   c.fillStyle = 'rgba(0, 0, 0, 0.1'
   c.fillRect(0, 0, canvas.width, canvas.height)
   
@@ -162,7 +173,8 @@ function animate() {
     enemy.update()
     const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y)
     if (dist - enemy.radius - player.radius < 1) {
-      cancelAnimationFrame(animatedId)
+      cancelAnimationFrame(animationId)
+      clearInterval(intervalId)
       modalEl.style.visibility = 'visible'
       modalEl.style.opacity = 1
       modalScoreEl.innerHTML = score
@@ -221,6 +233,14 @@ addEventListener('click', (event) => {
     new Projectile(canvas.width / 2, canvas.height / 2, 5, '#ffd700', velocity)
   )
 }) 
+
+buttonEl.addEventListener('click', () => {
+  init()
+  animate()
+  spawnEnemies()  
+  modalEl.style.visibility = 'hidden'
+  modalEl.style.opacity = 0
+})
 
 animate()
 spawnEnemies()

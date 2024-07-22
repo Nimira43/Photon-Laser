@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
+  --bk: #000;
   --dk: #111;
   --lg: #f5f5dc;
   --ma: #ff4500;
@@ -44,7 +45,6 @@ body {
 }
 
 .modal-el {
-  
   position: absolute;
   background-color: var(--ma);
   top: 50%;
@@ -83,6 +83,22 @@ body {
 
 .final-points {
   margin: 0;
+}
+
+.button-el {
+  margin: var(--lg-px) 0;
+  background-color: var(--bk);
+  font-size: var(--xl-px);
+  color: var(--ma);
+  padding: var(--md-px) var(--xl-px);
+  border: none;
+  border-radius: var(--sm-px);
+  cursor: pointer;
+  transition: background-color 0.5s ease-in;
+}
+
+.button-el:hover {
+  background-color: var(--dk);
 }
 
 
