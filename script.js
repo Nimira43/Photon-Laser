@@ -1,5 +1,6 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
+const scoreEl = document.querySelector('#score-el')
 
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -123,6 +124,7 @@ function spawnEnemies() {
 }
 
 let animatedId
+let score = 0
 
 function animate() {
   animatedId = requestAnimationFrame(animate)
@@ -181,6 +183,8 @@ function animate() {
         }
 
         if (enemy.radius - 10 > 5) {
+          score += 10
+          scoreEl.innerHTML = score
           gsap.to(enemy, {
             radius: enemy.radius - 10
           })
@@ -188,6 +192,8 @@ function animate() {
             projectiles.splice(projectilesIndex, 1)
           }, 0)
         } else {
+          score += 10
+          scoreEl.innerHTML = score
           setTimeout(() => {
             enemies.splice(index, 1)
             projectiles.splice(projectilesIndex, 1)

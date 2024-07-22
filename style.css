@@ -3,8 +3,24 @@
 body {
   background-color: #000;
   font-family: 'Poppins', sans-serif;
-  font-weight: 300;
   margin: 0;
   overflow: hidden;
 }
+
+.hits {
+  position: absolute;
+  background-color: #ff4500;
+  color: #f5f5dc;
+  text-shadow: 1px 1px 1px #111;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+  user-select: none;
+  padding: 5px 15px;
+  top: 15px;
+  left: 15px;
+  border-radius: 5px;
+  border: 1px solid #f5f5dc;
+}
+
 
