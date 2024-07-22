@@ -1,6 +1,8 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const scoreEl = document.querySelector('#score-el')
+const modalEl = document.querySelector('#modal-el')
+const modalScoreEl = document.querySelector('#modal-score-el')
 
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -161,6 +163,9 @@ function animate() {
     const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y)
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animatedId)
+      modalEl.style.visibility = 'visible'
+      modalEl.style.opacity = 1
+      modalScoreEl.innerHTML = score
     }
 
     for (
