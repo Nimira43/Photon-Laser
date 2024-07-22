@@ -57,19 +57,30 @@ body {
   border: 1px solid var(--lg)
 }
 
-.game-over {
-  font-size: var(--xxl-px);
-  font-weight: 700;
+.game-over,
+.modal-score-el,
+.final-points {
   text-shadow: 2px 2px 1px var(--dk);
   color: var(--lg);
+}
+
+.game-over,
+.final-points {
+  font-size: var(--xxl-px);
+  font-weight: 700;
 }
 
 .modal-score-el {
   font-size: var(--xxxl-px);
   font-weight: 800;
-  text-shadow: 2px 2px 1px var(--dk);
-  color: var(--lg);
+  margin-bottom: 0;
+  margin-top: var(--md-px);
 }
+
+.final-points {
+  margin: 0;
+}
+
 
 
 
