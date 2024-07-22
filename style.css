@@ -1,26 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+  --dk: #111;
+  --lg: #f5f5dc;
+  --ma: #ff4500;
+  --sm-px: 5px;
+  --md-px: 10px;
+  --lg-px: 15px;
+  --xl-px: 20px;
+  --xxl-px: 35px;
+  --xxxl-px: 50px;
+}
+
 body {
-  background-color: #000;
+  background-color: var(--dk);
   font-family: 'Poppins', sans-serif;
   margin: 0;
   overflow: hidden;
 }
 
-.hits {
+.title,
+.points {
   position: absolute;
-  background-color: #ff4500;
-  color: #f5f5dc;
-  text-shadow: 1px 1px 1px #111;
+  background-color: var(--ma);
+  color: var(--lg);
+  text-shadow: 1px 1px 1px var(--dk);
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 18px;
+  font-size: var(--lg-px);
   user-select: none;
-  padding: 5px 15px;
-  top: 15px;
-  left: 15px;
-  border-radius: 5px;
-  border: 1px solid #f5f5dc;
+  padding: var(--sm-px) var(--lg-px);
+  top: var(--lg-px);
+  border-radius: var(--sm-px);
+  border: 1px solid var(--lg);
 }
+
+.title {
+  left: var(--lg-px);
+}
+
+.points {
+  right: var(--lg-px);
+}
+
+.modal-el {
+  position: absolute;
+  background-color: var(--ma);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--md-px) var(--xl-px);
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  border-radius: var(--sm-px);
+  border: 1px solid var(--lg)
+}
+
+.game-over {
+  font-size: var(--xxl-px);
+  font-weight: 700;
+  text-shadow: 2px 2px 1px var(--dk);
+  color: var(--lg);
+}
+
+.modal-score-el {
+  font-size: var(--xxxl-px);
+  font-weight: 800;
+  text-shadow: 2px 2px 1px var(--dk);
+  color: var(--lg);
+}
+
+
 
 
